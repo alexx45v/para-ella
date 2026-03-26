@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle,#1a001f,#000);
+    font-family:'Segoe UI',sans-serif;
+    color:white;
+    overflow:hidden;
+}
+
+/* CARTA */
+.carta{
+    width:350px;
+    padding:25px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 30px #ff4da6;
+    backdrop-filter: blur(10px);
+    text-align:center;
+}
+
+#texto{
+    font-size:15px;
+    line-height:1.6;
+}
+
+/* CURSOR */
+.cursor{
+    display:inline-block;
+    width:8px;
+    background:#ff4da6;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+/* BOTON FINAL */
+.btn{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+    display:none;
+    transition:0.3s;
+}
+.btn:hover{
+    transform:scale(1.1);
+}
+
+/* CORAZONES */
+.corazon{
+    position:absolute;
+    color:#ff4da6;
+    animation:flotar 5s linear infinite;
+}
+@keyframes flotar{
+    0%{transform:translateY(100vh);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="carta">
+    <div id="texto"></div><span class="cursor"></span>
+    <button class="btn" onclick="final()">Ven acá 😏</button>
+</div>
+
+<script>
+const mensaje = `Mami… 😏💖
+
+Te amoooo tanto, peloooo tantoooo…
+
+Nena… tú eres la mía, la única que tiene esto de mí 🔥
+
+Niña… ven acá… porque donde tienes que estar es conmigo…
+
+Mi esposhita… yo contigo no juego…  
+yo te quiero solo para mí 😏💖
+
+Y no te voy a soltar… jamás…`;
+
+let i = 0;
+
+function escribir(){
+    if(i < mensaje.length){
+        const texto = document.getElementById("texto");
+        texto.innerHTML += mensaje.charAt(i) === "\n" ? "<br>" : mensaje.charAt(i);
+        i++;
+        setTimeout(escribir,40);
+    }else{
+        document.querySelector(".btn").style.display="inline-block";
+    }
+}
+
+escribir();
+
+/* BOTON FINAL */
+function final(){
+    document.body.innerHTML =
+    "<h1 style='color:#ff4da6;text-align:center;margin-top:40vh;font-size:30px;'>"+
+    "Ahora sí… te tengo aquí conmigo 😏🔥<br><br>"+
+    "Eres mía… y no pienso soltarte 💖"+
+    "</h1>";
+}
+
+/* CORAZONES */
+function crearCorazon(){
+    const c=document.createElement("div");
+    c.classList.add("corazon");
+    c.innerHTML="❤️";
+    c.style.left=Math.random()*100+"vw";
+    c.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+}
+setInterval(crearCorazon,300);
+</script>
+
+</body>
+</html>
