@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta para mi amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);overflow:hidden;font-family:'Poppins',sans-serif}
+.hearts{position:fixed;width:100%;height:100%;pointer-events:none}
+.heart{position:absolute;color:white;font-size:20px;animation:float 8s linear infinite;opacity:.7}
+@keyframes float{from{transform:translateY(100vh);opacity:0}to{transform:translateY(-120px);opacity:1}}
+.card{width:90%;max-width:800px;background:rgba(255,255,255,.18);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.3);padding:40px;border-radius:30px;box-shadow:0 15px 40px rgba(0,0,0,.15)}
+.title{text-align:center;font-family:'Great Vibes',cursive;font-size:4rem;color:#fff;margin-bottom:25px}
+#text{color:white;font-size:1.2rem;line-height:2;min-height:300px;white-space:pre-wrap}
+.cursor{display:inline-block;width:3px;background:white;animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+<body>
+<div class="hearts"></div>
+<div class="card">
+<div class="title">Para Ti ❤️</div>
+<div id="text"></div><span class="cursor"></span>
+</div>
+<script>
+const message=`Mi amor ❤️
+
+No sé si alguna vez voy a encontrar las palabras exactas para decirte todo lo que haces sentir en mi corazón.
+
+Me gusta pensarte cuando despierto, cuando estoy ocupado y cuando escucho una canción bonita. Porque de alguna manera siempre terminas apareciendo en mis pensamientos. 🥺
+
+Eres esa persona que logra hacer especiales los momentos más simples. Una conversación contigo puede alegrarme el día entero.
+
+Gracias por existir, por ser tú y por dejarme quererte.
+
+Tiiii amuuuuu muuuuuuuuuuuuuuuto mi amorrrr ❤️✨`;
+
+const textElement=document.getElementById("text");
+let index=0;
+function typeWriter(){
+if(index<message.length){
+textElement.innerHTML+=message.charAt(index);
+index++;
+setTimeout(typeWriter,35);
+}}
+typeWriter();
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*25+15)+"px";
+heart.style.animationDuration=(Math.random()*5+5)+"s";
+document.querySelector(".hearts").appendChild(heart);
+setTimeout(()=>heart.remove(),10000);
+}
+setInterval(createHeart,400);
+</script>
+</body>
+</html>
